@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
+import { connectDatabase } from '../config/database.js';
 import { Activity, LeaderboardEntry, Team, User, Workout } from '../models.js';
-const mongodbUri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/octofit_db';
 async function seedDatabase() {
     console.log('Seed the octofit_db database with test data');
-    await mongoose.connect(mongodbUri);
+    await connectDatabase();
     const db = mongoose.connection.db;
     if (db) {
         await db.dropDatabase().catch(() => undefined);

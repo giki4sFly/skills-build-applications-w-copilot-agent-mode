@@ -1,5 +1,6 @@
 import express, { type Request, type Response } from 'express';
-import mongoose, { type Model } from 'mongoose';
+import { type Model } from 'mongoose';
+import { connectDatabase } from './config/database.js';
 import { Activity, LeaderboardEntry, Team, User, Workout } from './models.js';
 
 const app = express();
@@ -8,7 +9,6 @@ const codespaceName = process.env.CODESPACE_NAME;
 const apiBaseUrl = codespaceName
   ? `https://${codespaceName}-8000.app.github.dev`
   : `http://localhost:${port}`;
-const mongodbUri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/octofit_db';
 
 app.use(express.json());
 
@@ -42,8 +42,7 @@ app.get('/api/health', (_req: Request, res: Response) => {
   res.json({ status: 'ok', service: 'octofit-backend', apiBaseUrl });
 });
 
-mongoose
-  .connect(mongodbUri)
+connectDatabase()
   .then(() => {
     console.log('MongoDB connected');
   })
