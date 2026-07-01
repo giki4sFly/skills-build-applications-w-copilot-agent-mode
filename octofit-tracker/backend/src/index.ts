@@ -5,6 +5,7 @@ import { Activity, LeaderboardEntry, Team, User, Workout } from './models.js';
 
 const app = express();
 const port = Number(process.env.PORT || 8000);
+const host = '0.0.0.0';
 const codespaceName = process.env.CODESPACE_NAME;
 const apiBaseUrl = codespaceName
   ? `https://${codespaceName}-8000.app.github.dev`
@@ -13,7 +14,9 @@ const apiBaseUrl = codespaceName
 app.use(express.json());
 
 const registerCollectionRoutes = (routeName: string, model: Model<any>) => {
-  app.get(`/api/${routeName}/`, async (_req: Request, res: Response) => {
+  const routePaths = [`/api/${routeName}`, `/api/${routeName}/`];
+
+  app.get(routePaths, async (_req: Request, res: Response) => {
     try {
       const items = await model.find({});
       res.json(items);
@@ -22,7 +25,7 @@ const registerCollectionRoutes = (routeName: string, model: Model<any>) => {
     }
   });
 
-  app.post(`/api/${routeName}/`, async (req: Request, res: Response) => {
+  app.post(routePaths, async (req: Request, res: Response) => {
     try {
       const newItem = await model.create(req.body);
       res.status(201).json(newItem);
@@ -50,7 +53,7 @@ connectDatabase()
     console.warn('MongoDB connection unavailable, continuing without database:', error.message);
   });
 
-app.listen(port, () => {
-  console.log(`Backend listening on port ${port}`);
+app.listen(port, host, () => {
+  console.log(`Backend listening on ${host}:${port}`);
   console.log(`API base URL: ${apiBaseUrl}`);
 });
