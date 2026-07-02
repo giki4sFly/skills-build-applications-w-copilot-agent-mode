@@ -3,6 +3,8 @@ import { getApiBaseUrl } from '../utils/api.js';
 
 const Leaderboard = () => {
   const [entries, setEntries] = useState([]);
+  const codespaceApiEndpoint = '-8000.app.github.dev/api/leaderboard';
+
   const [error, setError] = useState('');
 
   useEffect(() => {

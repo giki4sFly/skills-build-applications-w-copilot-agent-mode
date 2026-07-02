@@ -42,7 +42,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
 
       - name: Get response templates
         uses: actions/checkout@v6
@@ -57,7 +57,7 @@ jobs:
           repository: ${{ env.ISSUE_REPOSITORY }}
           issue-number: ${{ env.ISSUE_NUMBER }}
           file: ${{ env.STEP_1_FILE }}
-          vars: |
+          vars:
             login: ${{ github.actor }}
             full_repo_name: ${{ github.repository }}
 

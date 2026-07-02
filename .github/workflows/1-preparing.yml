@@ -33,7 +33,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
 
       - name: Get response templates
         uses: actions/checkout@v6
@@ -48,7 +48,7 @@ jobs:
           repository: ${{ env.ISSUE_REPOSITORY }}
           issue-number: ${{ env.ISSUE_NUMBER }}
           file: exercise-toolkit/markdown-templates/step-feedback/step-finished-prepare-next-step.md
-          vars: |
+          vars:
             next_step_number: 2
 
       - name: Create comment - add step content

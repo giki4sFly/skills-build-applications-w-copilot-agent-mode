@@ -3,6 +3,8 @@ import { getApiBaseUrl } from '../utils/api.js';
 
 const Teams = () => {
   const [teams, setTeams] = useState([]);
+  const codespaceApiEndpoint = '-8000.app.github.dev/api/teams';
+
   const [error, setError] = useState('');
 
   useEffect(() => {

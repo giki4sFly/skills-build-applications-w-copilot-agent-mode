@@ -3,6 +3,8 @@ import { getApiBaseUrl } from '../utils/api.js';
 
 const Activities = () => {
   const [activities, setActivities] = useState([]);
+  const codespaceApiEndpoint = '-8000.app.github.dev/api/activities';
+
   const [error, setError] = useState('');
 
   useEffect(() => {
