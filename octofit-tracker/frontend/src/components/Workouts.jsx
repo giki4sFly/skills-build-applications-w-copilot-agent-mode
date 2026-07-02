@@ -37,8 +37,13 @@ const Workouts = () => {
         <ul className="list-group list-group-flush">
           {workouts.map((workout) => (
             <li key={workout._id || workout.id} className="list-group-item">
-              <strong>{workout.name}</strong>
-              <div className="text-muted">{workout.description}</div>
+              <strong>{workout.title}</strong>
+              <div className="text-muted">
+                {workout.category} • {workout.duration} • {workout.intensity}
+              </div>
+              {workout.equipment?.length ? (
+                <div className="text-muted">Equipment: {workout.equipment.join(', ')}</div>
+              ) : null}
             </li>
           ))}
         </ul>
