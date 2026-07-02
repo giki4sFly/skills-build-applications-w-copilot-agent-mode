@@ -47,7 +47,7 @@ jobs:
           ref: v0.9.0
 
       - name: Create comment - add step content
-        uses: GrantBirki/comment@v2.1.1
+        uses: GrantBirki/comment@v3.0.3
         with:
           repository: ${{ env.ISSUE_REPOSITORY }}
           issue-number: ${{ env.ISSUE_NUMBER }}
@@ -57,7 +57,7 @@ jobs:
             full_repo_name: ${{ github.repository }}
 
       - name: Create comment - watching for progress
-        uses: GrantBirki/comment@v2.1.1
+        uses: GrantBirki/comment@v3.0.3
         with:
           repository: ${{ env.ISSUE_REPOSITORY }}
           issue-number: ${{ env.ISSUE_NUMBER }}
