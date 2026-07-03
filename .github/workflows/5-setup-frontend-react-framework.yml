@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - "build-octofit-app"
+    paths:
+      - "octofit-tracker/frontend/**"
 
 permissions:
   contents: read
@@ -30,11 +32,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 24
-
       - name: Get response templates
         uses: actions/checkout@v6
         with:
@@ -44,14 +41,14 @@ jobs:
 
       - name: Find last comment
         id: find-last-comment
-        uses: peter-evans/find-comment@v4.0.0
+        uses: peter-evans/find-comment@v3
         with:
           repository: ${{ env.ISSUE_REPOSITORY }}
           issue-number: ${{ env.ISSUE_NUMBER }}
           direction: last
 
       - name: Update comment - checking work
-        uses: GrantBirki/comment@v3.0.3
+        uses: GrantBirki/comment@v2.1.1
         with:
           repository: ${{ env.ISSUE_REPOSITORY }}
           issue-number: ${{ env.ISSUE_NUMBER }}
@@ -112,7 +109,7 @@ jobs:
           case-sensitive: false
 
       - name: Update comment - step results
-        uses: GrantBirki/comment@v3.0.3
+        uses: GrantBirki/comment@v2.1.1
         with:
           repository: ${{ env.ISSUE_REPOSITORY }}
           issue-number: ${{ env.ISSUE_NUMBER }}
@@ -151,11 +148,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 24
-
       - name: Get response templates
         uses: actions/checkout@v6
         with:
@@ -164,7 +156,7 @@ jobs:
           ref: v0.9.0
 
       - name: Create comment - step finished
-        uses: GrantBirki/comment@v3.0.3
+        uses: GrantBirki/comment@v2.1.1
         with:
           repository: ${{ env.ISSUE_REPOSITORY }}
           issue-number: ${{ env.ISSUE_NUMBER }}
@@ -173,14 +165,14 @@ jobs:
             next_step_number: 6
 
       - name: Create comment - add step content
-        uses: GrantBirki/comment@v3.0.3
+        uses: GrantBirki/comment@v2.1.1
         with:
           repository: ${{ env.ISSUE_REPOSITORY }}
           issue-number: ${{ env.ISSUE_NUMBER }}
           file: ${{ env.STEP_6_FILE }}
 
       - name: Create comment - watching for progress
-        uses: GrantBirki/comment@v3.0.3
+        uses: GrantBirki/comment@v2.1.1
         with:
           repository: ${{ env.ISSUE_REPOSITORY }}
           issue-number: ${{ env.ISSUE_NUMBER }}
