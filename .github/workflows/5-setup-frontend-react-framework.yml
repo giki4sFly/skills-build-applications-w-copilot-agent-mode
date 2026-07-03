@@ -7,6 +7,7 @@ on:
     paths:
       - "octofit-tracker/frontend/**"
 
+
 permissions:
   contents: read
   actions: write
