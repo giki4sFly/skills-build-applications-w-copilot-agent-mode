@@ -46,6 +46,12 @@ jobs:
           path: exercise-toolkit
           ref: v0.9.0
 
+      
+      - name: Check template
+         run: |
+          ls -la exercise-toolkit/markdown-templates/step-feedback/
+          cat exercise-toolkit/markdown-templates/step-feedback/lesson-review.md
+
       - name: Create comment - step finished - final review next
         uses: GrantBirki/comment@v3.0.3
         with:
